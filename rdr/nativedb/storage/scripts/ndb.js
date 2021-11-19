@@ -294,7 +294,7 @@ function generateNativesFile()
 					resultString += paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
 			}
 		
-			resultString += "); }" + (nativeObj.unused ? " // unused" : "") + endl;
+			resultString += "); }" + " // " + native + (nativeObj.unused ? " unused" : "") + endl;
         }
             
         resultString += "}" + endl + endl;
