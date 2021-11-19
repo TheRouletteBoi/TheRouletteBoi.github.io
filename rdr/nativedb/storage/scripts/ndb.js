@@ -279,49 +279,22 @@ function generateNativesFile()
                 let paramObj = paramsObj[param];
                 resultString += paramObj.type + (paramObj.type == "" ? "" : " ") + paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
             }
-            if (nativeObj.variadic) {
-                resultString += (nativeObj.variadic ? ")" : "); }") + (nativeObj.unused ? " // unused" : "") + endl;
-                // this should always be 'argCount' but let's do it anyway
-                resultString += "\t{" + endl + "\t\tNATIVE_VARARGS_BEGIN(" + paramsObj[paramsObj.length - 2].name + ");" + endl;
-                resultString += "\t\tnativeInit(" + native + ");" + endl + endl;
-                
-                for (let param in paramsObj) {
-                    if (param == paramsObj.length - 1)
-                        break;
-                    
-                    let paramObj = paramsObj[param];
-                    resultString += "\t\tnativePush(" + paramObj.name + ");" + endl;
-                }
-                
-                resultString += "\t\tNATIVE_VARARGS_PUSH();" + endl + endl;
-                resultString += "\t\tNATIVE_VARARGS_END();" + endl;
-                
-                if (nativeObj.return_type == "void") {
-                    resultString += "\t\tnativeCall();" + endl;
-                }
-                else {
-                    resultString += "\t\treturn *reinterpret_cast<" + nativeObj.return_type + "*>(nativeCall());" + endl;
-                }
-                
-                resultString += "\t}" + endl;
-            }
-            else {
-                if (nativeObj.return_type == "void") {
-                    resultString += ") { invoke<Void>(";
-                }
-                else {
-                    resultString += ") { return invoke<" + nativeObj.return_type + ">(";
-                }
-                
-                resultString += native + (paramsObj.length != 0 ? ", " : "");
-                
-                for (let param in paramsObj) {
-                        let paramObj = paramsObj[param];
-                        resultString += paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
-                }
             
-                resultString += "); }" + (nativeObj.unused ? " // unused" : "") + endl;
-            }
+			if (nativeObj.return_type == "void") {
+				resultString += ") { invoke<Void>(";
+			}
+			else {
+				resultString += ") { return invoke<" + nativeObj.return_type + ">(";
+			}
+			
+			resultString += native + (paramsObj.length != 0 ? ", " : "");
+			
+			for (let param in paramsObj) {
+					let paramObj = paramsObj[param];
+					resultString += paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
+			}
+		
+			resultString += "); }" + (nativeObj.unused ? " // unused" : "") + endl;
         }
             
         resultString += "}" + endl + endl;
