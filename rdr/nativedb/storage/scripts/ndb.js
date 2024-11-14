@@ -266,7 +266,8 @@ function generateNativesFile()
     let resultString = "";
     let date = new Date();
     resultString += "#pragma once" + endl + endl
-        + "// Generated " + date.toUTCString() + endl + endl;
+        + "// Generated " + date.toUTCString() + endl
+	+ "// https://therouletteboi.github.io/rdr/nativedb/" + endl + endl;
     for (let namespace in jsonData) {
         resultString += "namespace " + namespace + endl +
             "{" + endl;
