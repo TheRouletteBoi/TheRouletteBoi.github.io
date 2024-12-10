@@ -39,6 +39,12 @@
 .namespace {
 }
 
+.nsexpand {
+    color: lightgray;
+    font-size: 12px;
+    display: block, inline;
+}
+
 body {
     background: darkslategray;
     font-family: Tahoma,Verdana,sans;
@@ -154,6 +160,10 @@ a:link {
     text-indent: -50px;
     padding-left: 50px;
     display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .hash {
