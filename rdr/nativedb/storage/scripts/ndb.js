@@ -199,7 +199,7 @@ async function openNamespaceTab(namespace) {
         }
 
         htmlCode += ")  ";
-        htmlCode += "<span class='hash'>//  " + n + "</span>";
+        htmlCode += "<span class='hash'>// " + n + "</span>";
     }
 
     htmlCode += "</ul>";
