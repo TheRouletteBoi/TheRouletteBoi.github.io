@@ -434,6 +434,7 @@ function getParamGroup(params) {
     const set = ['x', 'y', 'z', 'w'];
 
     let group = splitCamelCaseString(params[0].name)
+		.filter(g => g !== 'xy')
         .join('');
 
     // Check for a special case where the first parameter is a Vector2 and the second is a float for RDR1 PC Vector3 support
